@@ -24,10 +24,10 @@ public class CommanderMoveForwardTest {
         // given a Commander
         // in an invalid position
         Commander.builder()
-                .to(planet)
-                .on(new Coordinates(10, 10))
-        // when I build
-                .build();
+            .to(planet)
+            .on(new Coordinates(10, 10))
+            // when I build
+            .build();
         // than I expect an exception
     }
 
@@ -37,10 +37,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.EAST))
-                .to(planet)
-                .on(new Coordinates(0, 0))
-                .build();
+            .send(new Rover(Direction.EAST))
+            .to(planet)
+            .on(new Coordinates(0, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -56,10 +56,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.WEST))
-                .to(planet)
-                .on(new Coordinates(1, 0))
-                .build();
+            .send(new Rover(Direction.WEST))
+            .to(planet)
+            .on(new Coordinates(1, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -75,10 +75,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.NORTH))
-                .to(planet)
-                .on(new Coordinates(0, 1))
-                .build();
+            .send(new Rover(Direction.NORTH))
+            .to(planet)
+            .on(new Coordinates(0, 1))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -94,10 +94,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.SOUTH))
-                .to(planet)
-                .on(new Coordinates(0, 0))
-                .build();
+            .send(new Rover(Direction.SOUTH))
+            .to(planet)
+            .on(new Coordinates(0, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -113,10 +113,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.EAST))
-                .to(planet)
-                .on(new Coordinates(9, 0))
-                .build();
+            .send(new Rover(Direction.EAST))
+            .to(planet)
+            .on(new Coordinates(9, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -132,10 +132,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.WEST))
-                .to(planet)
-                .on(new Coordinates(0, 0))
-                .build();
+            .send(new Rover(Direction.WEST))
+            .to(planet)
+            .on(new Coordinates(0, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -151,10 +151,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.NORTH))
-                .to(planet)
-                .on(new Coordinates(0, 0))
-                .build();
+            .send(new Rover(Direction.NORTH))
+            .to(planet)
+            .on(new Coordinates(0, 0))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
@@ -170,10 +170,10 @@ public class CommanderMoveForwardTest {
         // and hover explore a planet
         // in a valid position
         Commander commander = Commander.builder()
-                .send(new Rover(Direction.SOUTH))
-                .to(planet)
-                .on(new Coordinates(0, 9))
-                .build();
+            .send(new Rover(Direction.SOUTH))
+            .to(planet)
+            .on(new Coordinates(0, 9))
+            .build();
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position

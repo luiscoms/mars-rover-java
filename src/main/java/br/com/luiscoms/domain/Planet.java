@@ -6,15 +6,15 @@ public class Planet {
     private String name;
     private Obstacle[][] land;
 
-    public  Planet(String name, Integer sizeX, Integer sizeY) {
+    public Planet(String name, Integer sizeX, Integer sizeY) {
         land = new Obstacle[sizeX][sizeY];
         this.name = name;
     }
 
     private Boolean isValidCoordinates(Coordinates coordinates) {
         return coordinates.x >= 0 &&
-                coordinates.y >= 0 &&
-                land.length > coordinates.x && land[coordinates.x].length > coordinates.y;
+            coordinates.y >= 0 &&
+            land.length > coordinates.x && land[coordinates.x].length > coordinates.y;
     }
 
     public boolean isEmpty(Coordinates coordinates) throws InvalidCoordinates {
@@ -22,11 +22,11 @@ public class Planet {
     }
 
     public int getXBound() {
-        return land.length-1;
+        return land.length - 1;
     }
 
     public int getYBound() {
-        return land[0].length-1;
+        return land[0].length - 1;
     }
 
     public Obstacle getCoordinates(Coordinates coordinates) throws InvalidCoordinates {

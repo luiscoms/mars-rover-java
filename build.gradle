@@ -2,8 +2,7 @@ plugins {
     id 'java'
 }
 
-//apply plugin: 'java'
-//apply plugin: 'eclipse'
+apply plugin: 'jacoco'
 
 group 'br.com.luiscoms'
 version '0.0.0'
@@ -19,3 +18,9 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
 }
+
+jacoco {
+    toolVersion = "0.8.1"
+}
+
+test.finalizedBy jacocoTestReport
