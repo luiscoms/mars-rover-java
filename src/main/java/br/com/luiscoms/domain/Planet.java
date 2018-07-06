@@ -3,6 +3,7 @@ package br.com.luiscoms.domain;
 import br.com.luiscoms.exception.InvalidCoordinates;
 
 public class Planet {
+    public static final String INVALID_COORDINATES_MESSAGE = "Invalid coordinates for this planet %s";
     private String name;
     private Obstacle[][] land;
 
@@ -33,7 +34,7 @@ public class Planet {
         if (isValidCoordinates(coordinates)) {
             return land[coordinates.x][coordinates.y];
         }
-        throw new InvalidCoordinates("Invalid coordinates");
+        throw new InvalidCoordinates(String.format(INVALID_COORDINATES_MESSAGE, name));
     }
 
     public void setObstacle(Obstacle obstacle, Coordinates coordinates) throws InvalidCoordinates {
@@ -41,7 +42,7 @@ public class Planet {
             land[coordinates.x][coordinates.y] = obstacle;
             return;
         }
-        throw new InvalidCoordinates("Invalid coordinates");
+        throw new InvalidCoordinates(String.format(INVALID_COORDINATES_MESSAGE, name));
     }
 
     public void unsetObstacle(Coordinates coordinates) throws InvalidCoordinates {
@@ -49,6 +50,6 @@ public class Planet {
             land[coordinates.x][coordinates.y] = null;
             return;
         }
-        throw new InvalidCoordinates("Invalid coordinates");
+        throw new InvalidCoordinates(String.format(INVALID_COORDINATES_MESSAGE, name));
     }
 }
