@@ -17,7 +17,7 @@ public class Planet {
                 land.length > coordinates.x && land[coordinates.x].length > coordinates.y;
     }
 
-    private boolean isEmptyCoordinates(Coordinates coordinates) throws InvalidCoordinates {
+    public boolean isEmpty(Coordinates coordinates) throws InvalidCoordinates {
         return getCoordinates(coordinates) == null;
     }
 
@@ -37,7 +37,7 @@ public class Planet {
     }
 
     public void setObstacle(Obstacle obstacle, Coordinates coordinates) throws InvalidCoordinates {
-        if (isEmptyCoordinates(coordinates)) {
+        if (isEmpty(coordinates)) {
             land[coordinates.x][coordinates.y] = obstacle;
             return;
         }

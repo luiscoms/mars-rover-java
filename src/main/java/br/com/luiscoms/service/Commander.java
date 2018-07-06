@@ -7,45 +7,71 @@ import br.com.luiscoms.domain.Rover;
 import br.com.luiscoms.exception.InvalidCoordinates;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class Commander {
-    private final Rover send;
-    private final Planet to;
-    private final Coordinates on;
+    private final Rover rover;
+    private final Planet planet;
+    private Coordinates coordinates;
 
-    public void moveForward() {
+    public void moveForward() throws InvalidCoordinates {
         // get rover coordinates
         // update coordinates
-        Coordinates destination = null;
-        if (send.getDirection() == Direction.EAST) {
-            destination = new Coordinates(on.x+(on.x+1 > getPlanet().getXBound() ? -on.x : 1), on.y);
-        }
-        if (send.getDirection() == Direction.WEST) {
-            destination = new Coordinates(on.x-(on.x-1 < 0 ? -getPlanet().getXBound() : 1), on.y);
-        }
-        if (send.getDirection() == Direction.NORTH) {
-            destination = new Coordinates(on.x, on.y-(on.y-1 < 0 ? -getPlanet().getYBound() : 1));
-        }
-        if (send.getDirection() == Direction.SOUTH) {
-            destination = new Coordinates(on.x, on.y+(on.y+1 > getPlanet().getYBound() ? -on.y : 1));
-        }
-        try {
+        Coordinates destination = getForwardCoordinates();
+        if (getPlanet().isEmpty(destination)) {
             // set new coordinates
-            getPlanet().setObstacle(send, destination);
+            getPlanet().setObstacle(rover, destination);
             // remove rover from old coordinates
-            getPlanet().unsetObstacle(on);
-        } catch (InvalidCoordinates invalidCoordinates) {
-            invalidCoordinates.printStackTrace();
+            getPlanet().unsetObstacle(coordinates);
+            coordinates = destination;
         }
     }
 
-    public Planet getPlanet() {
-        return to;
+    public void moveBackward() throws InvalidCoordinates {
+        // get rover coordinates
+        // update coordinates
+        Coordinates destination = getBackwardCoordinates();
+        if (getPlanet().isEmpty(destination)) {
+            // set new coordinates
+            getPlanet().setObstacle(rover, destination);
+            // remove rover from old coordinates
+            getPlanet().unsetObstacle(coordinates);
+            coordinates = destination;
+        }
     }
 
-    public Rover getHover() {
-        return send;
+    private Coordinates getForwardCoordinates() {
+        if (rover.getDirection() == Direction.EAST) {
+            return new Coordinates(coordinates.x + (coordinates.x + 1 > getPlanet().getXBound() ? -coordinates.x : 1), coordinates.y);
+        }
+        if (rover.getDirection() == Direction.WEST) {
+            return new Coordinates(coordinates.x - (coordinates.x - 1 < 0 ? -getPlanet().getXBound() : 1), coordinates.y);
+        }
+        if (rover.getDirection() == Direction.NORTH) {
+            return new Coordinates(coordinates.x, coordinates.y - (coordinates.y - 1 < 0 ? -getPlanet().getYBound() : 1));
+        }
+        if (rover.getDirection() == Direction.SOUTH) {
+            return new Coordinates(coordinates.x, coordinates.y + (coordinates.y + 1 > getPlanet().getYBound() ? -coordinates.y : 1));
+        }
+        return null;
+    }
+
+    private Coordinates getBackwardCoordinates() {
+        if (rover.getDirection() == Direction.EAST) {
+            return new Coordinates(coordinates.x - (coordinates.x - 1 > -1 ? 1 : -getPlanet().getXBound()), coordinates.y);
+        }
+        if (rover.getDirection() == Direction.WEST) {
+            return new Coordinates(coordinates.x + (coordinates.x + 1 > getPlanet().getXBound() ? -coordinates.x : 1), coordinates.y);
+        }
+        if (rover.getDirection() == Direction.NORTH) {
+            return new Coordinates(coordinates.x, coordinates.y + (coordinates.y + 1 > getPlanet().getYBound() ? -coordinates.y : 1));
+        }
+        if (rover.getDirection() == Direction.SOUTH) {
+            return new Coordinates(coordinates.x, coordinates.y - (coordinates.y - 1 > -1 ? 1 : -getPlanet().getYBound()));
+        }
+        return null;
     }
 
     @Builder(builderMethodName = "builder")
@@ -53,5 +79,4 @@ public class Commander {
         to.setObstacle(send, on);
         return new Commander(send, to, on);
     }
-
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class CommanderTest {
+public class CommanderMoveForwardTest {
 
     private Planet planet;
 
@@ -23,11 +23,11 @@ public class CommanderTest {
     public void commandShouldThrowWhenInvalidPosition() throws InvalidCoordinates {
         // given a Commander
         // in an invalid position
-        Commander commander = Commander.builder()
+        Commander.builder()
                 .to(planet)
                 .on(new Coordinates(10, 10))
-                .build();
         // when I build
+                .build();
         // than I expect an exception
     }
 
@@ -44,7 +44,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(1, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(1, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -60,7 +63,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -76,7 +82,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -92,7 +101,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 1))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 1);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -108,7 +120,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -124,7 +139,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(9, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(9, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -140,7 +158,10 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 9))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 9);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 
     @Test
@@ -156,6 +177,9 @@ public class CommanderTest {
         // when I command hover to move forward
         commander.moveForward();
         // than I expect that hover is on new position
-        assertThat(commander.getPlanet().getCoordinates(new Coordinates(0, 0))).isEqualTo(commander.getHover());
+        Coordinates newCoordinates = new Coordinates(0, 0);
+        assertThat(commander.getPlanet().getCoordinates(newCoordinates)).isEqualTo(commander.getRover());
+        // and update rover coordinates
+        assertThat(commander.getCoordinates()).isEqualToComparingFieldByField(newCoordinates);
     }
 }
